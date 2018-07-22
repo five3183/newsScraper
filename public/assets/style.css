@@ -1,0 +1,10 @@
+h5 {
+    background-color: blue;
+    color: white;
+}
+
+.articles {
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+}
