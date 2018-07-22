@@ -2,8 +2,8 @@
 $.getJSON("/articles", function(data) {
     // For each one
     for (var i = 0; i < data.length; i++) {
-      // Display the apropos information on the page
-      $("#articles").append("<div><p data-id='" + data[i]._id + "'>" + "<h5>" + data[i].title + "</h5><button type='button' class='btn btn-success '>Success</button><br>" + "<p><a href='" + data[i].link + "'>" + data[i].link + "</a></p></div></p>>");
+      // Display on the page
+      $("#articles").append("<div class ='articles'><p data-id='" + data[i]._id + "'><h5>" + data[i].title + "</h5></p>" + "<p><a href='" + data[i].link + "'target='_blank'>" + data[i].link + "</a></p>" + "<p><button  data-id='" + data[i]._id +"'" + "data-title='" + data[i].title + "'" + "data-link='" + data[i].link + "'" + "type='button' class='btn btn-success saveMe'>Save Article</button></p></div><br>");
     }
   });
   
@@ -70,4 +70,25 @@ $.getJSON("/articles", function(data) {
     $("#titleinput").val("");
     $("#bodyinput").val("");
   });
+
+  $(document).on("click", ".saveMe", function () {
+    var data = {
+      title:  $(this).attr("data-title").trim(),
+      link: $(this).attr("data-link").trim()
+    }
+    console.log(data)
+    var url = "/saved"
+  
+    var xmlhttp
+
+    if(window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest()
+    }
+
+    xmlhttp.open("POST", url, true)
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xmlhttp.setRequestHeader("Accept", "application/json")
+    xmlhttp.send(data)
+   
+  })
   

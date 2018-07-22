@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")))
 app.use("/", router)
 
-mongoose.connect("mongodb://localhost/newsScraper");
+mongoose.connect("mongodb://localhost/scraped");
 
 app.listen(PORT, function () {
     console.log("App running on PORT: " + PORT)

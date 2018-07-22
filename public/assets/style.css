@@ -1,10 +1,54 @@
+.navbar {
+    color: white;
+    font-style: bold;
+    background-color: blue;
+}
+h1 {
+    color: blue;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 73px;
+    font-style: bolder;
+}
+hr {
+    box-shadow: 0 0 10px 5px navy;
+    width: 300px;
+}
+h3 {
+    color: blue;
+    font-family: 'Times New Roman', Times, serif; 
+    font-size: 37px;
+    font-style: bolder;
+}
 h5 {
     background-color: blue;
     color: white;
+    height: 50px;
+    padding: 10px;
 }
 
+#heading {
+    background-image: url("./images/news.jpg");
+    background-size: cover;
+    height: 400px;
+    padding: 100px;
+}
+
+.nav-link {
+    padding: 10px;
+}
 .articles {
     border: 1px;
-    border-color: black;
+    border-color: rgb(133, 111, 111);
     border-style: solid;
+    box-shadow: 5px 10px;
+    padding: 20px;
+    background-color: lightgrey;
+}
+
+.btn-success{
+    align-content: right;
+}
+
+#scraper {
+    background-color: red;
 }
