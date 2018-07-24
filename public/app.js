@@ -72,23 +72,19 @@ $.getJSON("/articles", function(data) {
   });
 
   $(document).on("click", ".saveMe", function () {
-    var data = {
+    var savedArticle = {
       title:  $(this).attr("data-title").trim(),
       link: $(this).attr("data-link").trim()
     }
-    console.log(data)
-    var url = "/saved"
-  
-    var xmlhttp
-
-    if(window.XMLHttpRequest) {
-      xmlhttp = new XMLHttpRequest()
-    }
-
-    xmlhttp.open("POST", url, true)
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    xmlhttp.setRequestHeader("Accept", "application/json")
-    xmlhttp.send(data)
-   
+    fetch("/saved", {
+       method: "POST",
+      body: JSON.stringify(savedArticle) 
+    })
+    .then(function(response) {
+      return response.json()
+    })
+    .then(function(data) {
+      console.log(data)
+    })
   })
   

@@ -6,27 +6,28 @@ var db = require("../models");
 
 // SCRAPE HERE
 router.get("/scrape", function(req, res) {
-    axios.get("http://www.nytimes.com").then(function(response) {
-      var $ = cheerio.load(response.data);
-      $("h2.story-heading").each(function(i, element) {
-        var result = {};
-        result.title = $(this)
-          .children("a")
-          .text();
-        result.link = $(this)
-          .children("a")
-          .attr("href");
-        db.Article.create(result)
-          .then(function(dbArticle) {
-            console.log(dbArticle);
-          })
-          .catch(function(err) {
-            return res.json(err);
-          });
-      });
-      res.redirect('/')
+  
+  axios.get("http://www.nytimes.com").then(function(response) {
+    var $ = cheerio.load(response.data);
+    $("h2.story-heading").each(function(i, element) {
+      var result = {};
+      result.title = $(this)
+        .children("a")
+        .text();
+      result.link = $(this)
+        .children("a")
+        .attr("href");
+      db.Article.create(result)
+        .then(function(dbArticle) {
+          console.log(dbArticle);
+        })
+        .catch(function(err) {
+          return res.json(err);
+        });
     });
+    res.redirect('/')
   });
+});
   
   // get the articles
   router.get("/articles", function(req, res) {
