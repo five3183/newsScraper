@@ -14,7 +14,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")))
 app.use("/", router)
 
-mongoose.connect("mongodb://localhost/scraped");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraped"
+
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+
 
 app.listen(PORT, function () {
     console.log("App running on PORT: " + PORT)
