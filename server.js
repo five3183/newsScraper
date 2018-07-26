@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 router = require("./controllers/routes.js")
 
 var path = require("path")
-var PORT = 3000;
+var PORT =  process.env.PORT || 3000;
 var app = express();
 
 app.use(logger("dev"));
